@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +18,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(InvoiceController::class)->group(function () {
+    Route::get('invoice', 'index');
+    Route::get('invoice/{invoice}', 'show');
+    Route::post('invoice', 'store');
+});
+
+
+Route::controller(CompanyController::class)->group(function () {
+    Route::get('company', 'index');
+    Route::get('company/{company}', 'show');
+    Route::post('company', 'store');
+});
+
+Route::controller(ClientController::class)->group(function () {
+    Route::get('client', 'index');
+    Route::get('client/{client}', 'show');
+    Route::post('client', 'store');
 });
